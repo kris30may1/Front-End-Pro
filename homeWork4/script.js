@@ -8,9 +8,6 @@ let valid;
 
 do {
     oper = prompt('Enter the math operator (+ , - , / , *):');
-    // if(oper == '+' || oper == '-' || oper == '*' || oper == '/'){
-    // valid = true;
-    // }
 } while(oper !== '+' && oper !== '-' && oper !== '*' && oper !== '/');
 
 do{
