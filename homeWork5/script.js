@@ -1,8 +1,9 @@
 'use strict'
 
-const userArr = prompt('Enter some numbers:').split('');
-
-const numberArr = userArr.filter((item) => +item);
+const userArr = prompt('Enter some numbers:')
+.split(',')
+.filter(item => !isNaN(item) && item.trim(''));
+alert(userArr);
 
     function evenNumber(arrA){
         const evenArr = arrA.filter((elem) => elem % 2 === 0);
@@ -19,8 +20,8 @@ const numberArr = userArr.filter((item) => +item);
         alert(`The sum of numbers: ${sumArr}`);
     }
 
-evenNumber(numberArr);
-maxElemOfArr(numberArr);
-sum(numberArr);
+evenNumber(userArr);
+maxElemOfArr(userArr);
+sum(userArr);
 
 
