@@ -1,0 +1,19 @@
+#generateBtn {
+    background-color: #fedc00;
+    cursor: pointer;
+    border: none;
+    color: #000a2e;
+    width: 90px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+#generateBtn:hover {background-color: #fff346;} 
+
+#rowsCount {
+    border: none;
+    border-bottom: 1px solid #223062;
+    font-size: 15px;
+    margin: 10px;
+}
