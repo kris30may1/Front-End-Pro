@@ -3,11 +3,16 @@
     cursor: pointer;
 }
 
-li {
+.task-item {
     background-color: yellow;
     cursor: pointer;
 }
 
 #errorMessage {
     color: red;
+}
+
+.task-item.done {
+    background-color: green;
+    cursor: pointer;
 }

@@ -4,10 +4,8 @@ const taskInput = document.querySelector('#toDoInput');
 const toDoList = document.querySelector('#toDoList');
 const liTemplate = document.querySelector('#liTemplate').innerHTML;
 const errorMessage = document.querySelector('#errorMessage');
-const defColor = toDoList.style.backgroundColor;
 
 document.querySelector('#toDoForm').addEventListener('submit', onToDoFormSubmit);
-document.querySelector('#addBtn').addEventListener('click', onToDoFormSubmit);
 toDoList.addEventListener('click', onLiElmClick);
 
 
@@ -15,7 +13,7 @@ function onToDoFormSubmit(e){
     e.preventDefault();
     const task = getTaskStr();
     if(validateNewTask(task)){
-        createToDoList();
+        createOfElmInList();
     } else {
         showError();
     }
@@ -24,12 +22,16 @@ function onToDoFormSubmit(e){
 }
 
 function onLiElmClick(e) {
-if(e.target.style.backgroundColor == defColor)
-    e.target.style.backgroundColor = 'green';
-else{e.target.style.backgroundColor = defColor;}	
+    if(e.target.classList.contains('task-item')){
+        toggleTaskState(e.target);
+    }	
 }
 
-function createToDoList(){
+function toggleTaskState(el) {
+    el.classList.toggle('done');
+}
+
+function createOfElmInList(){
     recTaskinToDoList();
 }
 
@@ -38,12 +40,13 @@ function getTaskStr(){
 }
 
 function recTaskinToDoList(){
-    let template = addToDo();
+    let template = generateLi();
     toDoList.innerHTML += template;
 }
 
-function addToDo(){
-    return liTemplate.replace('{{newTask}}', getTaskStr());
+function generateLi(task){
+    task = getTaskStr();
+    return liTemplate.replace('{{newTask}}', task);
 }
 
 function validateNewTask(task) {
