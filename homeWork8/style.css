@@ -7,3 +7,7 @@ li {
     background-color: yellow;
     cursor: pointer;
 }
+
+#errorMessage {
+    color: red;
+}
