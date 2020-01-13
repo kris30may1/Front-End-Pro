@@ -3,7 +3,7 @@
 const taskInput = document.querySelector('#toDoInput');
 const toDoList = document.querySelector('#toDoList');
 const liTemplate = document.querySelector('#liTemplate').innerHTML;
-const errorMessage = document.getElementById('errorMessage');
+const errorMessage = document.querySelector('#errorMessage');
 const defColor = toDoList.style.backgroundColor;
 
 document.querySelector('#toDoForm').addEventListener('submit', onToDoFormSubmit);
