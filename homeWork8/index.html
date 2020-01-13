@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" async></script>
+    <title>Home Task 8</title>
+</head>
+<body>
+    <form id="toDoForm">
+        <b>New task:</b><input type="text" id="toDoInput"/>
+        <button type="submit" id="addBtn">Add</button>
+    </form>
+    <ul id="toDoList"></ul>
+    <script type="text/template" id="liTemplate">
+        <li>{{newTask}}</li>
+    </script>
+
+</body>
+</html>
