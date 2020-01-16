@@ -11,28 +11,56 @@ const fieldTemplate2 = document.querySelector('#fldsTemplate2').innerHTML;
 const fieldTemplate3 = document.querySelector('#fldsTemplate3').innerHTML;
 
 document.querySelector('#dataForm').addEventListener('submit', onAddContactFormSubmit);
+document.querySelector('#removeIcon').addEventListener('onclick', onRemoveIconClick);
+nameFld.addEventListener('blur', onNameInputBlur, true);
+surnameFld.addEventListener('blur', onSurnameInputBlur, true);
+phoneFld.addEventListener('blur', onPhoneInputBlur, true);
+
 
 function onAddContactFormSubmit(e){
     e.preventDefault();
     submitForm();
 }
+function onRemoveIconClick(e){
+    const del = e.target;
+    if(del.contains.classList('.icon')){
+        tableBody.deleteRow(0);
+    }   
+}
 
-function onRemoveBtnClick(){
+function onNameInputBlur(){
+    const name = {name: nameFld.value};
+    name.trim();
+    if(name = ''){
+        changeInputState(e.target);
+    } 
+}
+
+function changeInputState(el){
+    el.classList.toggle('error');
+}
+
+function onSurnameInputBlur(){
+
+}
+
+function onPhoneInputBlur(){
+
 }
 
 function submitForm() {
-    const nameCell = {name: nameFld.value};
-    const surnameCell = {surname: surnameFld.value};
-    const phoneCell = {phone: phoneFld.value};
+    const rowData = {name: nameFld.value,
+                    surname: surnameFld.value,
+                    phone: phoneFld.value};
     
-    addNewRow(nameCell, surnameCell, phoneCell);
+    addNewRow(rowData);
     resetForm();
 }
 
-function addNewRow(row1, row2, row3) {
-    const html = fieldTemplate1.replace('{{name}}', row1.name);
-    const html1 = fieldTemplate2.replace('{{surname}}', row2.surname);
-    const html2 = fieldTemplate3.replace('{{phone}}', row3.phone);
+function addNewRow(row) {
+    const html = fieldTemplate1.replace('{{name}}', row.name);
+    const html1 = fieldTemplate2.replace('{{surname}}', row.surname);
+    const html2 = fieldTemplate3.replace('{{phone}}', row.phone);
 
     const newRow = tableBody.insertRow(0);
 
@@ -41,10 +69,7 @@ function addNewRow(row1, row2, row3) {
     newRow.innerHTML += html2;    
 }
 
-function htmlToElement(){
-
-}
-
 function resetForm(){
     dataForm.reset();
 }
+

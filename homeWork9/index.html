@@ -27,13 +27,13 @@
             <form id="dataForm">
                 <tr>
                     <th>
-                        <input type="text" id="name"/>
+                        <input type="text" class="data-input-name" id="name"/>
                     </th>
                     <th>
-                        <input type="text" id="surname"/>
+                        <input type="text" class="data-input-surname" id="surname"/>
                     </th>
                     <th>
-                        <input type="text" id="phone"/>
+                        <input type="text" class="data-input-phone" id="phone"/>
                     </th>
                     <th>
                         <button type="submit" id="addBtn">Add</button>
@@ -50,9 +50,10 @@
 </script>
 <script type="text/template" id="fldsTemplate3">
     <td>{{phone}}</td>
-    <td>
-        <span id="removeBtn" src="img\remove, close, delete, exit icon.svg"></span></p> 
-    </td> 
+    <div id="iconContainer">
+        <span class="icon">X</span>
+    </div>
+    
 </script>
 </body>
 </html>
