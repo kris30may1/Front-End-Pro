@@ -1,0 +1,43 @@
+body {
+    margin: 0 auto;
+}
+
+table {
+    font-family: sans-serif;
+    max-width: 100%;
+    text-align: center;
+    color: #656556;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #ece9e0;
+    border: 16px solid #ece9e0;
+    border-radius: 20px;
+}
+
+th {
+    font-size: 18px;
+    padding: 10px;
+}
+
+td {
+    background: #b8def5;
+    padding: 10px;
+}
+tfoot {
+    background: #a1a1e4;;
+}
+
+#addBtn {
+    text-transform: uppercase;
+    background-color: #ccccff;
+    cursor: pointer;  
+    border-radius: 10px;
+}
+
+#addBtn:hover {background-color: #6495ed;}
+
+#removeBtn {
+    align-content: center;
+    width: 20px;
+    height: 20px;
+}
