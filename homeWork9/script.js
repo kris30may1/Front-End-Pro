@@ -38,10 +38,6 @@ function removeRow(el){
     el.remove();
     }   
 
-function toggleInputState(el){
-    el.classList.toggle('error');
-}
-
 function addNewRow(row) {
     const html = fieldTemplate1.replace('{{name}}', row.name);
     const html1 = fieldTemplate2.replace('{{surname}}', row.surname);
