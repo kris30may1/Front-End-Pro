@@ -3,7 +3,6 @@
 function createCalculator(num){
     return {
         set: value => (num = value),
-        get: () => num,
         add: (value) => num + value,
         sub: (value) => num - value,
         divide: (value) => num / value,
