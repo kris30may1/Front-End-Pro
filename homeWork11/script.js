@@ -1,21 +1,27 @@
 'use strict'
 
-function Student(name, ...marks){
+function Student(name,...marks) {
     this.name = name;
-    this.marks = +marks;
+    this.marks = marks;
+    +marks;
 }
 
-Student.prototype.avgMark = function(marks){
-    let sum;
-    for(let i = 0; i < marks.length; i++){
-        sum += marks[i];
-    }
-    let avg = sum/marks.length;
+Student.prototype.avgMark = function() {
+    let sum = this.marks.reduce((a, b) => a + b, 0);
+    let avg = sum/this.marks.length;
     return avg;
-};
+}
 
-Student.prototype.maxMark = function(marks){
-    console.log(Math.max.apply(null, marks));
+Student.prototype.maxMark = function() {
+    return Math.max.apply(null,this.marks);
+}
+
+Student.prototype.minMark = function() {
+    return Math.min.apply(null, this.marks);
+}
+
+function avgMark(){
+
 }
 
 const students = [new Student('John',10,5,6,9,8,7,8),
@@ -23,7 +29,8 @@ const students = [new Student('John',10,5,6,9,8,7,8),
 
 console.log(students);
 
-console.log(students[1].avgMark());
-
+console.log(students[0].maxMark());
+console.log(students[0].minMark());
+console.log(students[0].avgMark());
 
 
