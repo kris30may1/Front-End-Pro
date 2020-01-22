@@ -20,10 +20,14 @@ Student.prototype.minMark = function() {
     return Math.min.apply(null, this.marks);
 }
 
-function avgMark(){
-    let sum = student.marks.reduce((a, b) => a + b, 0);
-    let avg = sum/student.marks.length;
-    return avg;
+function avgMark() {
+    let arr = [];
+    for (let i = 0; i < students.length; i++) {
+        arr[i] = students[i].marks;
+    }
+    console.log(arr);
+    // let avg = sum/marksArr.length;
+    // return avg;
 }
 
 const students = [new Student('John',10,5,6,9,8,7,8),
