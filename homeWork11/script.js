@@ -21,7 +21,9 @@ Student.prototype.minMark = function() {
 }
 
 function avgMark(){
-
+    let sum = student.marks.reduce((a, b) => a + b, 0);
+    let avg = sum/student.marks.length;
+    return avg;
 }
 
 const students = [new Student('John',10,5,6,9,8,7,8),
@@ -32,5 +34,8 @@ console.log(students);
 console.log(students[0].maxMark());
 console.log(students[0].minMark());
 console.log(students[0].avgMark());
+
+console.log(avgMark());
+
 
 
