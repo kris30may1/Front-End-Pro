@@ -7,9 +7,10 @@ function Student(name,...marks) {
 }
 
 Student.prototype.avgMark = function() {
-    let sum = this.marks.reduce((a, b) => a + b);
-    let avg = sum/this.marks.length;
-    return avg;
+    const sum = this.marks.reduce((a, b) => a + b);
+    const avg = sum/this.marks.length;
+    const avgRounded = +avg.toFixed(2);
+    return avgRounded;
 }
 
 Student.prototype.maxMark = function() {
@@ -25,8 +26,8 @@ function groupAvgMark() {
     for (let i = 0; i < students.length; i++) {
         avgArr[i] = students[i].avgMark();
     }
-    let sum = avgArr.reduce((a, b) => a + b);
-    let avg = sum/avgArr.length;
+    const sum = avgArr.reduce((a, b) => a + b);
+    const avg = sum/avgArr.length;
     return avg;
 }
 
