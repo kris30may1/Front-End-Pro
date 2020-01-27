@@ -18,17 +18,20 @@ class Hamburger {
     }
 
     add(addition) {
-        this.addition = addition[0];
+        const addPrice = addition[0];
+        const addCalories = addition[1];
+        this.addPrice = addPrice;
+        this.addCalories = addCalories;
     }
 
     calculatePrice() {
-        const sum = this.hamburgerPrice + this.addition; 
-        return sum;
+        const price = this.hamburgerPrice + this.addPrice;
+        return price; 
     }
 
     calculateCalories() {
-        const caloriesSum = this.hamburgerCalories;
-        return caloriesSum;
+        const calories = this.hamburgerCalories + this.addCalories;
+        return calories;
     }
 }
 
@@ -36,6 +39,7 @@ const hamburger = new Hamburger (Hamburger.SIZE_SMALL);
 
 console.log(hamburger);
 console.log(hamburger.add(Hamburger.TOPING_MAYO));
-console.log(hamburger.calculatePrice);
-
-console.log(hamburger.hamburgerCalories);
+console.log('Calories: ' + hamburger.calculateCalories());
+console.log('Price: ' + hamburger.calculatePrice());
+console.log(hamburger.add(Hamburger.ADDITION_SPICE));
+console.log('Price with spice: ' + hamburger.calculatePrice()) 
