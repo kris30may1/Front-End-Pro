@@ -2,24 +2,32 @@
 
 class Hamburger {
     
-    static SIZE_SMALL = [50, 20];
-    static SIZE_MIDDLE = [75, 30];
-    static SIZE_LARGE = [100, 40];
+    static SIZE_SMALL = {price: 50,
+                         calories = 20};
+    static SIZE_MIDDLE = {price: 75,
+                          calories: 30};
+    static SIZE_LARGE = {price: 100,
+                         calories: 40};
 
-    static ADDITION_CHEESE = [10, 20];
-    static ADDITION_SALAD = [20, 5];
-    static ADDITION_POTATO = [15, 10];
-    static ADDITION_SPICE = [15, 0];
-    static TOPING_MAYO = [20, 5];
+    static ADDITION_CHEESE = {price: 10,
+                              calories: 20};
+    static ADDITION_SALAD = {price: 20,
+                            calories: 5};
+    static ADDITION_POTATO = {price: 15,
+                              calories: 5};
+    static ADDITION_SPICE = {price: 15,
+                             calories: 0};
+    static TOPING_MAYO = {price: 20,
+                          calories: 5};
     
     constructor(hamburgerPrice, hamburgerCalories) {
-        this.hamburgerPrice = Hamburger.SIZE_SMALL[0] || Hamburger.SIZE_MIDDLE[0] || Hamburger.SIZE_LARGE[0];
-        this.hamburgerCalories = Hamburger.SIZE_SMALL[1] || Hamburger.SIZE_MIDDLE[1] || Hamburger.SIZE_LARGE[1];
+        this.hamburgerPrice = Hamburger.SIZE_SMALL.price || Hamburger.SIZE_MIDDLE.price || Hamburger.SIZE_LARGE.price;
+        this.hamburgerCalories = Hamburger.SIZE_SMALL.calories || Hamburger.SIZE_MIDDLE.calories || Hamburger.SIZE_LARGE.calories;
     }
 
     add(addition) {
-        const addPrice = addition[0];
-        const addCalories = addition[1];
+        const addPrice = addition.price;
+        const addCalories = addition.calories;
         this.addPrice = addPrice;
         this.addCalories = addCalories;
     }
