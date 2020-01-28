@@ -1,0 +1,21 @@
+.nav-link {
+    cursor: pointer;
+    margin: 30px;
+}
+
+.mat-icon {
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: #e6ffff;
+}
+
+.mat-icon:hover {
+    background-color: aliceblue;
+}
+
+.nav-link.active {
+    cursor: unset;
+}
