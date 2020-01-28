@@ -1,6 +1,12 @@
+body {
+    margin: 30px;
+}
+
 .nav-link {
     cursor: pointer;
-    margin: 30px;
+    margin: 10px;
+    width: 150px;
+    text-align: center;
 }
 
 .mat-icon {
@@ -18,4 +24,14 @@
 
 .nav-link.active {
     cursor: unset;
+}
+
+.nav-content {
+    display: none;
+}
+
+.arrow-icon {
+    width: 200px;
+    display: inline-block;
+    margin: 0 auto;
 }
