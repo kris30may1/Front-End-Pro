@@ -1,37 +1,32 @@
 body {
-    margin: 30px;
-}
-
-.nav-link {
-    cursor: pointer;
-    margin: 10px;
-    width: 150px;
-    text-align: center;
-}
-
-.mat-icon {
-    margin-top: 40px;
-    cursor: pointer;
-}
-
-.nav-link:hover {
-    background-color: #e6ffff;
-}
-
-.mat-icon:hover {
-    background-color: aliceblue;
-}
-
-.nav-link.active {
-    cursor: unset;
-}
-
-.nav-content {
-    display: none;
+    margin: 0 auto;
 }
 
 .arrow-icon {
     width: 200px;
     display: inline-block;
-    margin: 0 auto;
+    margin-top: 50px;
+    margin-left: 1000px;
+}
+
+.header-item {
+    display: inline;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.content-item {
+    display: none;
+}
+
+.header-item.active {
+    background-color: blue;
+} 
+
+.header-item:hover {
+    background-color: burlywood;
+}
+
+.header {
+    height: 50px;
 }
