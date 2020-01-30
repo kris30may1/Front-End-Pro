@@ -1,21 +1,29 @@
+'use strict'
+
 class TabSet {
-    constructor(el) {
+    constructor(el, config) {
+        this.config = config || {
+            hideAll: true}
         this.el = el;
         this.init();
     }
     
-    static TAB_HEADER_CLASS = 'header'; //nav
+    static TAB_HEADER_CLASS1 = 'nav'; //nav
+    static TAB_HEADER_CLASS2 = 'nav-tabs'; //nav
     static TAB_CONTENT_CLASS = 'content'; //nav-item
-    // static TAB_ITEM_LINK_CLASS = 'nav-link';
-    // static TAB_ITEM_CONTENT_CLASS = 'nav-content';
-    static TAB_HEADER_ITEM = 'header-item';
-    static TAB_HEADER_ICONS = 'header-icon';
-    static TAB_CONTENT_ITEM = 'content-item';
+    static TAB_HEADER_ITEM = 'nav-item'; //nav-link
+    static TAB_HEADER_ICONS = 'nav-icon';
+    static TAB_CONTENT_ITEM = 'content-item'; //nav-content
+    static CONTENT_ACTIVE_CLASS = 'active';
+    static TAB_ACTIVE_CLASS = 'active';
+    static ARROW_CLASS = 'mat-icon';
 
     init() {
         this.bindClasses();
         this.createEl();
         this.moveEl();
+        this.defaultState();
+        this.bindCallbacks();
         // this.removeEl();
     }
 
@@ -33,37 +41,109 @@ class TabSet {
     createEl() {
         const divHeader = document.createElement('div');
         const divContent = document.createElement('div')
-        divHeader.classList.add(TabSet.TAB_HEADER_CLASS);
+        divHeader.classList.add(TabSet.TAB_HEADER_CLASS1);
+        divHeader.classList.add(TabSet.TAB_HEADER_CLASS2);
         divContent.classList.add(TabSet.TAB_CONTENT_CLASS);
         this.el.appendChild(divHeader);
         this.el.appendChild(divContent);
     }
 
     moveEl() {
-        let arr1 = document.querySelectorAll('.header-item');
-        for (let i = 0; i < arr1.length; i++) {
-            document.querySelector('.header').appendChild(arr1[i]);
+        let headerItems = document.querySelectorAll('.nav-item');
+        for (let i = 0; i < headerItems.length; i++) {
+            document.querySelector('.nav').appendChild(headerItems[i]);
         }
 
-        let arr2 = document.querySelectorAll('.content-item');
-        for (let i = 0; i < arr2.length; i++) {
-            document.querySelector('.content').appendChild(arr2[i]);
+        let contentItems = document.querySelectorAll('.content-item');
+        for (let i = 0; i < contentItems.length; i++) {
+            document.querySelector('.content').appendChild(contentItems[i]);
         }
 
-        document.querySelector('.header').appendChild(document.querySelector('.arrow-icon'));
+        document.querySelector('.nav').appendChild(document.querySelector('.arrow-icon'));
+    }
+
+    defaultState() {
+        document.querySelector('.content').children[0].classList.add('active');
+        document.querySelector('.nav').children[0].classList.add('active');
     }
 
     bindCallbacks() {
-        this.el.addEventListener('click', this.onTabClick.bind(this));
+        document.querySelector('.nav').addEventListener('click', this.onTabClick.bind(this));
+        document.querySelector('.arrow-icon').addEventListener('click', this.onArrowClick.bind(this));
     }
 
     onTabClick(e) {
+        switch (true) {
+            case e.target.classList.contains(
+                TabSet.TAB_HEADER_ITEM
+            ):
+                this.onTitleClick(e.target);
+                break;
+        }
+    } 
+    
+    onArrowClick(e) {
+        switch (true) {
+            case e.target.classList.contains(
+                TabSet.ARROW_CLASS
+            ):
+                this.onArrowsClick(e.target);
+                break;
+        }
+    }
+
+    onArrowsClick(currentArrow){
         
     }
 
+    onTitleClick(itemElem) {
+        const isCurrentVisible = this.isVisible(itemElem);
+
+        if (this.config.hideAll) {
+            this.hideAll();
+        }
+
+        if (!isCurrentVisible) {
+            this.show(itemElem);
+        } else {
+            this.hide(itemElem);
+        }
+    }
+
+    isVisible(itemElem) {
+        return itemElem.classList.contains(TabSet.TAB_ACTIVE_CLASS);
+    }
+
+    show(itemElem) {
+        itemElem.classList.add(TabSet.TAB_ACTIVE_CLASS);
+    }
+
+    hide(itemElem) {
+        itemElem.classList.remove(TabSet.TAB_ACTIVE_CLASS);
+    }
+
+    isVisible(itemElem) {
+        return itemElem.classList.contains(TabSet.TAB_ACTIVE_CLASS);
+    }
+
+    hideAll() {
+        const visibleElements = this.el.querySelectorAll(
+            '.' + TabSet.TAB_ACTIVE_CLASS
+        );
+
+        Array.prototype.forEach.call(visibleElements, this.hide.bind(this));
+    }
+
+    prev() {
+
+    }
+
+    next() {
+
+    }
     // removeEl() {
     //     for(let i = 0; i < 2; i++) {
-    //         this.el.removeChild(this.el.children[i]);
+    //         this.el.removeFirstChild(this.el.children[i]);
     //     }
     // }
 }

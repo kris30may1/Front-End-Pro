@@ -5,28 +5,36 @@ body {
 .arrow-icon {
     width: 200px;
     display: inline-block;
-    margin-top: 50px;
-    margin-left: 1000px;
+    cursor: pointer;
+    margin-top: 50px; 
+    margin-right: 1000px;   
 }
 
-.header-item {
-    display: inline;
-    margin-left: 50px;
-    margin-right: 50px;
+mat-icon:hover {
+    background-color: aliceblue;
+}
+
+.nav-item {
+    cursor: pointer;
+    margin: 50px;
+    width: 150px;
+    text-align: center;
 }
 
 .content-item {
     display: none;
+    margin: 50px;
 }
 
-.header-item.active {
-    background-color: blue;
+.nav-item.active {
+    background-color: aqua;
+    cursor: unset;    
 } 
 
-.header-item:hover {
-    background-color: burlywood;
+.nav-item:hover {
+    background-color: aliceblue;
 }
 
-.header {
-    height: 50px;
+.content-item.active {
+    display: block;
 }
