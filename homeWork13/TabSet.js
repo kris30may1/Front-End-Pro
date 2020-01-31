@@ -108,15 +108,15 @@ class TabSet {
         
         const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);    
         
-        if (activeElIndex == 0 || 1) {
-            divHeader.children[activeElIndex + 1].classList.add(
+        if (activeElIndex == 1 || activeElIndex == 2) {
+            divHeader.children[activeElIndex - 1].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
-            divContent.children[activeElIndex + 1].classList.add(
+            divContent.children[activeElIndex - 1].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
-        } else if (activeElIndex == 2) {
-            divHeader.children[0].classList.add(
+        } else if (activeElIndex == 0) {
+            divHeader.children[2].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
-            divContent.children[0].classList.add(
+            divContent.children[2].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
         }
 
@@ -133,15 +133,15 @@ class TabSet {
         
         const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);
               
-        if (activeElIndex == 1 || 2) {
-            divHeader.children[activeElIndex - 1].classList.add(
+        if (activeElIndex == 0 || activeElIndex == 1) {
+            divHeader.children[activeElIndex + 1].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
-            divContent.children[activeElIndex - 1].classList.add(
+            divContent.children[activeElIndex + 1].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
-        } else if (activeElIndex == 0) {
-            divHeader.children[2].classList.add(
+        } else if (activeElIndex == 2) {
+            divHeader.children[0].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
-            divContent.children[2].classList.add(
+            divContent.children[0].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
         }
 
