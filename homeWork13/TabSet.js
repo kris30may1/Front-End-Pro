@@ -17,7 +17,7 @@ class TabSet {
     static CONTENT_ACTIVE_CLASS = 'active';
     static TAB_ACTIVE_CLASS = 'active';
     static ARROW_CLASS = 'mat-icon';
-    
+        
 
     init() {
         this.bindClasses();
@@ -25,7 +25,6 @@ class TabSet {
         this.moveEl();
         this.defaultState();
         this.bindCallbacks();
-        // this.removeEl();
     }
 
     bindClasses() {
@@ -50,9 +49,10 @@ class TabSet {
     }
 
     moveEl() {
+        const divHeader = document.querySelector('.nav'); 
         let headerItems = document.querySelectorAll('.nav-item');
         for (let i = 0; i < headerItems.length; i++) {
-            document.querySelector('.nav').appendChild(headerItems[i]);
+            divHeader.appendChild(headerItems[i]);
         }
 
         let contentItems = document.querySelectorAll('.content-item');
@@ -60,12 +60,12 @@ class TabSet {
             document.querySelector('.content').appendChild(contentItems[i]);
         }
 
-        document.querySelector('.nav').appendChild(document.querySelector('.arrow-icon'));
+        divHeader.appendChild(document.querySelector('.arrow-icon'));
     }
 
     defaultState() {
-        document.querySelector('.content').children[0].classList.add('active');
-        document.querySelector('.nav').children[0].classList.add('active');
+        document.querySelector('.content').children[0].classList.add(TabSet.TAB_ACTIVE_CLASS);
+        document.querySelector('.nav').children[0].classList.add(TabSet.TAB_ACTIVE_CLASS);
     }
 
     bindCallbacks() {
@@ -102,12 +102,11 @@ class TabSet {
     }
 
     prev() {
-        const divContent = document.querySelector('.content');
-        const divHeader = document.querySelector('.nav');
         const activeElem = document.querySelector('.active');
-        console.log(activeElem);
-        const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);
-        console.log(activeElIndex);       
+        const divHeader = document.querySelector('.nav');
+        const divContent = document.querySelector('.content');
+        
+        const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);    
         
         if (activeElIndex == 0 || 1) {
             divHeader.children[activeElIndex + 1].classList.add(
@@ -129,12 +128,11 @@ class TabSet {
 
     next() {
         const divContent = document.querySelector('.content');
-        const divHeader = document.querySelector('.nav');
         const activeElem = document.querySelector('.active');
-        console.log(activeElem);
-        const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);
-        console.log(activeElIndex);       
+        const divHeader = document.querySelector('.nav');
         
+        const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);
+              
         if (activeElIndex == 1 || 2) {
             divHeader.children[activeElIndex - 1].classList.add(
                 TabSet.TAB_ACTIVE_CLASS);
@@ -172,11 +170,10 @@ class TabSet {
     }
 
     show(itemElem) {
-        const divContent = document.querySelector('.content');
         const navIndex = Array.prototype.indexOf.call(itemElem.parentNode.childNodes, itemElem);
         console.log(navIndex);
         itemElem.classList.add(TabSet.TAB_ACTIVE_CLASS);
-        divContent.children[navIndex].classList.add(
+        document.querySelector('.content').children[navIndex].classList.add(
             TabSet.TAB_ACTIVE_CLASS
         );
     }
@@ -196,12 +193,6 @@ class TabSet {
 
         Array.prototype.forEach.call(visibleElements, this.hide.bind(this));
     }
-
-    // removeEl() {
-    //     for(let i = 0; i < 2; i++) {
-    //         this.el.removeFirstChild(this.el.children[i]);
-    //     }
-    // }
 }
 
     
