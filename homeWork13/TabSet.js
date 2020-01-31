@@ -17,6 +17,7 @@ class TabSet {
     static CONTENT_ACTIVE_CLASS = 'active';
     static TAB_ACTIVE_CLASS = 'active';
     static ARROW_CLASS = 'mat-icon';
+    
 
     init() {
         this.bindClasses();
@@ -127,7 +128,29 @@ class TabSet {
     }
 
     next() {
+        const divContent = document.querySelector('.content');
+        const divHeader = document.querySelector('.nav');
+        const activeElem = document.querySelector('.active');
+        console.log(activeElem);
+        const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);
+        console.log(activeElIndex);       
+        
+        if (activeElIndex == 1 || 2) {
+            divHeader.children[activeElIndex - 1].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+            divContent.children[activeElIndex - 1].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+        } else if (activeElIndex == 0) {
+            divHeader.children[2].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+            divContent.children[2].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+        }
 
+        divContent.children[activeElIndex].classList.remove(
+            TabSet.TAB_ACTIVE_CLASS
+            );
+        this.hide(activeElem);
     }
 
     onTitleClick(itemElem) {
