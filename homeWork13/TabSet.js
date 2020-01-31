@@ -40,7 +40,7 @@ class TabSet {
 
     createEl() {
         const divHeader = document.createElement('div');
-        const divContent = document.createElement('div')
+        const divContent = document.createElement('div');
         divHeader.classList.add(TabSet.TAB_HEADER_CLASS1);
         divHeader.classList.add(TabSet.TAB_HEADER_CLASS2);
         divContent.classList.add(TabSet.TAB_CONTENT_CLASS);
@@ -93,12 +93,46 @@ class TabSet {
     }
 
     onArrowsClick(currentArrow){
+        if(currentArrow.classList.contains('next')){
+            this.next();
+        } else {
+            this.prev();
+        }       
+    }
+
+    prev() {
+        const divContent = document.querySelector('.content');
+        const divHeader = document.querySelector('.nav');
+        const activeElem = document.querySelector('.active');
+        console.log(activeElem);
+        const activeElIndex = Array.prototype.indexOf.call(divHeader.childNodes, activeElem);
+        console.log(activeElIndex);       
         
+        if (activeElIndex == 0 || 1) {
+            divHeader.children[activeElIndex + 1].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+            divContent.children[activeElIndex + 1].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+        } else if (activeElIndex == 2) {
+            divHeader.children[0].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+            divContent.children[0].classList.add(
+                TabSet.TAB_ACTIVE_CLASS);
+        }
+
+        divContent.children[activeElIndex].classList.remove(
+            TabSet.TAB_ACTIVE_CLASS
+            );
+        this.hide(activeElem);
+    }
+
+    next() {
+
     }
 
     onTitleClick(itemElem) {
         const isCurrentVisible = this.isVisible(itemElem);
-
+        
         if (this.config.hideAll) {
             this.hideAll();
         }
@@ -115,7 +149,13 @@ class TabSet {
     }
 
     show(itemElem) {
+        const divContent = document.querySelector('.content');
+        const navIndex = Array.prototype.indexOf.call(itemElem.parentNode.childNodes, itemElem);
+        console.log(navIndex);
         itemElem.classList.add(TabSet.TAB_ACTIVE_CLASS);
+        divContent.children[navIndex].classList.add(
+            TabSet.TAB_ACTIVE_CLASS
+        );
     }
 
     hide(itemElem) {
@@ -134,13 +174,6 @@ class TabSet {
         Array.prototype.forEach.call(visibleElements, this.hide.bind(this));
     }
 
-    prev() {
-
-    }
-
-    next() {
-
-    }
     // removeEl() {
     //     for(let i = 0; i < 2; i++) {
     //         this.el.removeFirstChild(this.el.children[i]);
