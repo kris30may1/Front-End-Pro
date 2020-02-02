@@ -47,7 +47,7 @@ function getTaskStr(){
 function createOfElmInList(){
     const task = getTaskStr();
     let template = generateLi(task);
-    toDoList += template;
+    toDoList.innerHTML += template;
 }
 
 function generateLi(task){
