@@ -1,0 +1,17 @@
+#addBtn {
+    cursor: pointer;
+}
+
+.task-item {
+    background-color: #e6fff3;
+    cursor: pointer;
+}
+
+#errorMessage {
+    color: red;
+}
+
+.task-item.done {
+    background-color: #5ac18e;
+    cursor: pointer;
+}
