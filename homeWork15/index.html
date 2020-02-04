@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../common/css/normalize.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Photos</title>
+</head>
+<body>
+    <div class="wrapper split left">
+        <div class="list-container">
+            <ul id="albums" class="list-group">
+                <script type="text/template" id="liTemplate">
+                    <li class="album-item list-group-item">{{newAlbum}}</li>
+                </script>
+            </ul>
+        </div>
+        <div class="gallery split right" id="gallery">
+            <div class="mb-3 pics animation all 2">
+                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg" alt="Card image cap">
+            </div>
+        </div>
+    </div> 
+</body>
+</html>
