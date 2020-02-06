@@ -19,3 +19,15 @@
   .album-item {
       cursor: pointer;
   }
+
+  .album-item:hover {
+      background-color: #03fcfc;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
