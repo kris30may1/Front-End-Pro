@@ -23,11 +23,30 @@
   .album-item:hover {
       background-color: #03fcfc;
   }
-
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
   }
+
+  .column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+  }
+  
+  .column img {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+  
+  .column img:hover {
+    opacity: 1;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
