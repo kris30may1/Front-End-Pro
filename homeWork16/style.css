@@ -1,0 +1,12 @@
+tr {
+    cursor: pointer;
+}
+
+.icon {
+    cursor: pointer;
+    text-align: center;
+}
+
+.icon:hover {
+    background-color: grey;
+}
