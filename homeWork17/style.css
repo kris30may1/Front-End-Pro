@@ -9,3 +9,7 @@
 .container {
     max-width: 1500px;
 }
+
+.new-task {
+    display: table;
+}
