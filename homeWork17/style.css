@@ -1,0 +1,11 @@
+.nav {
+    float: left;
+}
+
+.btn {
+    float: right;
+}
+
+.container {
+    max-width: 1500px;
+}
