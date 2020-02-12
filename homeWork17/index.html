@@ -6,25 +6,29 @@
     <link rel="stylesheet" href="../common/css/normalize.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lemonada&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <title>Task Board</title>
+    <title>Sticker`s Board</title>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div>
-                <div class="nav nav-pills nav-fill">
-                    <a class="nav-item nav-link active" href="#">Task Board</a>
+                <div class="title">
+                    <h1>Your Sticker`s Board!</h1>
                 </div>
             </div>
-            <button class="btn btn-outline-primary" id="add-new-task-btn">Add New Note</button>
+            <button class="btn btn-outline-primary" id="add-new-task-btn">Add New Sticker</button>
         </div>
-        <div class="board">
-            <script type="text/template" id="new-note">
+        <div id="board" >
+            <script type="text/template" id="new-sticker">
                 <div class="new-task" id="task" data-id="{{id}}"> 
-                    <textarea name="Note {{number}}" placeholder="Enter your note..." cols="30" rows="10">
-                    <span class="icon close">X</span>
+                    <div>
+                        <span class="icon close">X</span>
+                    </div>
+                    <textarea placeholder="Enter your text..." class="sticker" name="sticker" cols="30" rows="10">
+                        {{Text}}
                     </textarea>
                 </div>
             </script>
