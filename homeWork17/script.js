@@ -6,53 +6,79 @@ const stickerTemplate = document.querySelector('#new-sticker').innerHTML;
 const board = document.querySelector('#board');
 
 let stickers = [];
-let sticker = {};
 
 addNewTaskBtn.addEventListener('click', onAddNewTaskBtnClick);
-board.addEventListener('blur', onStickerBlur, true);
 board.addEventListener('click', onDeleteIconClick);
+board.addEventListener('blur', onStickerBlur, true);
 
 getStickers();
 
 function onAddNewTaskBtnClick() {
-    createNewSticker(sticker);
+    
+    let sticker = createNewSticker();
+
+    stickers.push(sticker);
+   
+    renderStickersBoard(stickers);
+
+    saveStickers(stickers);
 }
 
 function onStickerBlur(e) {
-    if (e.target.classList.contains('.sticker')) {
-         updateSticker(e);
-     }
+    console.log(e.target);
+    
+    let sticker = updateSticker(e.target);
+
+    stickers.push(sticker);
+
+    renderStickersBoard(stickers);
+    
+    saveStickers(stickers);
+}
+
+function updateSticker(sticker) {
+    console.log(sticker.parentNode);
+    sticker.parentNode.text = sticker.value;
+    return sticker;
+    // stickers = stickers.map(item => (item.id == sticker.id ? sticker : item));
 }
 
 function onDeleteIconClick(e) {
-    console.log(e.target);
-    if (e.target) {
-        console.log(e.target.parentNode.parentNode);
-        deleteSticker(e.target.parentNode.parentNode.dataset.id);
+    if (e.target.classList.contains('close')) {
+        const item = e.target.parentNode.parentNode;
+        
+        deleteSticker(item.dataset.id);
+
+        renderStickersBoard(stickers);
+
+        saveStickers(stickers);
     }
 }
 
-function createNewSticker(sticker) {            ////This method is ready
-    sticker.id = Date.now();
-    stickers.push(sticker);
-    renderStickersBoard(stickers);
+function saveStickers(items){
+    localStorage.setItem(LS_KEY, JSON.stringify(items));    
+}
 
-    localStorage.setItem(LS_KEY, JSON.stringify(stickers));
+function createNewSticker() {            
+    let sticker = {};
+    sticker.id = Date.now();
+    return sticker;
 }
 
 function setStickers(data) {
     return (stickers = data);
 }
 
-function getStickers() {                   ////// this method is ready
+function getStickers() {                   
     let data = localStorage.getItem(LS_KEY);
     data = data ? JSON.parse(data) : [];
+    
     setStickers(data);
 
     renderStickersBoard(data);
 }
 
-function renderStickersBoard(data) {                /////this method is ready
+function renderStickersBoard(data) {               
     board.innerHTML = data.map(generateStickerHtml).join('\n');
 }
  
@@ -61,16 +87,6 @@ function generateStickerHtml(sticker) {
         .replace('{{id}}', sticker.id);
 }
 
-function updateSticker(sticker) {
-    stickers = stickers.map(item => (item.id == sticker.id ? sticker : item));
-    localStorage.setItem(LS_KEY, JSON.stringify(stickers));
-
-    renderStickersBoard(stickers);
-}
-
 function deleteSticker(id) {
-    stickers = stickers.find(sticker => sticker.id !== id);
-    renderStickersBoard(stickers);
-
-    localStorage.setItem(stickers);
+    stickers = stickers.filter(sticker => sticker.id !== +id);
 }
