@@ -1,7 +1,7 @@
 'use strict'
 
 const LS_KEY = 'stickersList';
-const addNewTaskBtn = document.querySelector('#add-new-task-btn');
+const addNewTaskBtn = document.querySelector('#add-new-sticker-btn');
 const stickerTemplate = document.querySelector('#new-sticker').innerHTML;
 const board = document.querySelector('#board');
 
@@ -9,23 +9,26 @@ let stickers = [];
 let sticker = {};
 
 addNewTaskBtn.addEventListener('click', onAddNewTaskBtnClick);
-board.addEventListener('submit', onAddStickerSubmit)
-     .addEventListener('click', onDeleteIconClick);
+board.addEventListener('blur', onStickerBlur, true);
+board.addEventListener('click', onDeleteIconClick);
+
+getStickers();
 
 function onAddNewTaskBtnClick() {
     createNewSticker(sticker);
 }
 
-function onAddStickerSubmit(e) {
-    e.preventDefault();
-    if (e.targer.contains.classList('.sticker')) {
-         addStickerText(e);
+function onStickerBlur(e) {
+    if (e.target.classList.contains('.sticker')) {
+         updateSticker(e);
      }
 }
 
 function onDeleteIconClick(e) {
-    if (e.targer.contains.classList('.icon close')) {
-        deleteSticker(e);
+    console.log(e.target);
+    if (e.target) {
+        console.log(e.target.parentNode.parentNode);
+        deleteSticker(e.target.parentNode.parentNode.dataset.id);
     }
 }
 
@@ -41,11 +44,11 @@ function setStickers(data) {
     return (stickers = data);
 }
 
-function getStickers() {
+function getStickers() {                   ////// this method is ready
     let data = localStorage.getItem(LS_KEY);
     data = data ? JSON.parse(data) : [];
-
     setStickers(data);
+
     renderStickersBoard(data);
 }
 
@@ -58,12 +61,16 @@ function generateStickerHtml(sticker) {
         .replace('{{id}}', sticker.id);
 }
 
-function addStickerText() {
+function updateSticker(sticker) {
+    stickers = stickers.map(item => (item.id == sticker.id ? sticker : item));
+    localStorage.setItem(LS_KEY, JSON.stringify(stickers));
 
+    renderStickersBoard(stickers);
 }
 
 function deleteSticker(id) {
-    stickers = sticker.filter(sticker => sticker.id !== id);
-    localStorage.removeItem(sticker);
-    renderStickersBoard();
+    stickers = stickers.find(sticker => sticker.id !== id);
+    renderStickersBoard(stickers);
+
+    localStorage.setItem(stickers);
 }

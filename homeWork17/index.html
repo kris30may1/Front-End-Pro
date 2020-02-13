@@ -19,16 +19,15 @@
                     <h1>Your Sticker`s Board!</h1>
                 </div>
             </div>
-            <button class="btn btn-outline-primary" id="add-new-task-btn">Add New Sticker</button>
+            <button class="btn btn-outline-primary" id="add-new-sticker-btn">Add New Sticker</button>
         </div>
         <div id="board" >
             <script type="text/template" id="new-sticker">
-                <div class="new-task" id="task" data-id="{{id}}"> 
+                <div class="stiсker column" data-id="{{id}}"> 
                     <div>
                         <span class="icon close">X</span>
                     </div>
                     <textarea placeholder="Enter your text..." class="sticker" name="sticker" cols="30" rows="10">
-                        {{Text}}
                     </textarea>
                 </div>
             </script>
