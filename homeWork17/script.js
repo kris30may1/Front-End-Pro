@@ -84,8 +84,15 @@ function renderStickersBoard(data) {
  
 function generateStickerHtml(sticker) {
     return stickerTemplate
-        .replace('{{id}}', sticker.id);
+        .replace('{{id}}', sticker.id)
+        .replace('{{text}}', sticker.text);
 }
+
+// function textReplace(el) {
+//     if (el.text = '') {
+//         stickerTemplate.replace('{{text}}', '')
+//     } else (el.text) 
+// }
 
 function deleteSticker(id) {
     stickers = stickers.filter(sticker => sticker.id !== +id);
