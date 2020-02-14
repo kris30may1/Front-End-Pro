@@ -31,23 +31,20 @@ function onStickerBlur(e) {
 
     console.log(stickers);
 
-    // stickers.push(sticker);
-
     // renderStickersBoard(stickers);
     
-    // saveStickers(stickers);
+    saveStickers(stickers);
 }
 
 function updateSticker(data) {
     saveText(data);
 
     const id = data.parentNode.dataset.id;
+
+    console.log(id);
     
-    let item = stickers.find(el => el.id = id);
-    console.log(item);
-    // item.text = data.value;
-    // console.log(item);
-    // return item;
+    stickers.find(el => (el.id == +id ? el.text = data.value : el));
+    console.log(stickers);
 }
 
 function saveText(el) {
@@ -59,6 +56,8 @@ function onDeleteIconClick(e) {
         const item = e.target.parentNode.parentNode;
         
         deleteSticker(item.dataset.id);
+
+        // getStickers(stickers);
 
         renderStickersBoard(stickers);
 
