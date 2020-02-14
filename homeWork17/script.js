@@ -24,27 +24,22 @@ function onAddNewTaskBtnClick() {
     saveStickers(stickers);
 }
 
-function onStickerBlur(e) {
-    console.log(e.target);
-    
+function onStickerBlur(e) {   
     updateSticker(e.target);
-
-    console.log(stickers);
-
-    // renderStickersBoard(stickers);
-    
+    renderStickersBoard(stickers);
     saveStickers(stickers);
 }
 
 function updateSticker(data) {
     saveText(data);
+    let obj = findStickerById(data);
+    obj.text = data.value;
+}
 
+function findStickerById(data) {
     const id = data.parentNode.dataset.id;
-
-    console.log(id);
-    
-    stickers.find(el => (el.id == +id ? el.text = data.value : el));
-    console.log(stickers);
+    let obj = stickers.find(el => el.id == +id);
+    return obj;
 }
 
 function saveText(el) {
@@ -56,11 +51,7 @@ function onDeleteIconClick(e) {
         const item = e.target.parentNode.parentNode;
         
         deleteSticker(item.dataset.id);
-
-        // getStickers(stickers);
-
         renderStickersBoard(stickers);
-
         saveStickers(stickers);
     }
 }
@@ -84,7 +75,6 @@ function getStickers() {
     data = data ? JSON.parse(data) : [];
     
     setStickers(data);
-
     renderStickersBoard(data);
 }
 
