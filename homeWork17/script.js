@@ -27,20 +27,31 @@ function onAddNewTaskBtnClick() {
 function onStickerBlur(e) {
     console.log(e.target);
     
-    let sticker = updateSticker(e.target);
+    updateSticker(e.target);
 
-    stickers.push(sticker);
+    console.log(stickers);
 
-    renderStickersBoard(stickers);
+    // stickers.push(sticker);
+
+    // renderStickersBoard(stickers);
     
-    saveStickers(stickers);
+    // saveStickers(stickers);
 }
 
-function updateSticker(sticker) {
-    console.log(sticker.parentNode);
-    sticker.parentNode.text = sticker.value;
-    return sticker;
-    // stickers = stickers.map(item => (item.id == sticker.id ? sticker : item));
+function updateSticker(data) {
+    saveText(data);
+
+    const id = data.parentNode.dataset.id;
+    
+    let item = stickers.find(el => el.id = id);
+    console.log(item);
+    // item.text = data.value;
+    // console.log(item);
+    // return item;
+}
+
+function saveText(el) {
+    el.innerHTML = el.value;
 }
 
 function onDeleteIconClick(e) {
