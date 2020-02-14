@@ -14,13 +14,9 @@ board.addEventListener('blur', onStickerBlur, true);
 getStickers();
 
 function onAddNewTaskBtnClick() {
-    
-    let sticker = createNewSticker();
-
+    const sticker = createNewSticker();
     stickers.push(sticker);
-   
     renderStickersBoard(stickers);
-
     saveStickers(stickers);
 }
 
@@ -32,13 +28,13 @@ function onStickerBlur(e) {
 
 function updateSticker(data) {
     saveText(data);
-    let obj = findStickerById(data);
+    const obj = findStickerById(data);
     obj.text = data.value;
 }
 
 function findStickerById(data) {
     const id = data.parentNode.dataset.id;
-    let obj = stickers.find(el => el.id == +id);
+    const obj = stickers.find(el => el.id == +id);
     return obj;
 }
 
@@ -63,6 +59,7 @@ function saveStickers(items){
 function createNewSticker() {            
     let sticker = {};
     sticker.id = Date.now();
+    sticker.text = '';
     return sticker;
 }
 
@@ -83,16 +80,11 @@ function renderStickersBoard(data) {
 }
  
 function generateStickerHtml(sticker) {
+    console.log(sticker.text);
     return stickerTemplate
         .replace('{{id}}', sticker.id)
         .replace('{{text}}', sticker.text);
 }
-
-// function textReplace(el) {
-//     if (el.text = '') {
-//         stickerTemplate.replace('{{text}}', '')
-//     } else (el.text) 
-// }
 
 function deleteSticker(id) {
     stickers = stickers.filter(sticker => sticker.id !== +id);
