@@ -7,13 +7,13 @@ const board = document.querySelector('#board');
 
 let stickers = [];
 
-addNewTaskBtn.addEventListener('click', onAddNewTaskBtnClick);
+addNewTaskBtn.addEventListener('click', onAddNewStickerBtnClick);
 board.addEventListener('click', onDeleteIconClick);
 board.addEventListener('blur', onStickerBlur, true);
 
 getStickers();
 
-function onAddNewTaskBtnClick() {
+function onAddNewStickerBtnClick() {
     const sticker = createNewSticker();
     stickers.push(sticker);
     renderStickersBoard(stickers);
@@ -52,8 +52,8 @@ function onDeleteIconClick(e) {
     }
 }
 
-function saveStickers(items){
-    localStorage.setItem(LS_KEY, JSON.stringify(items));    
+function saveStickers(data){
+    localStorage.setItem(LS_KEY, JSON.stringify(data));    
 }
 
 function createNewSticker() {            
@@ -80,7 +80,6 @@ function renderStickersBoard(data) {
 }
  
 function generateStickerHtml(sticker) {
-    console.log(sticker.text);
     return stickerTemplate
         .replace('{{id}}', sticker.id)
         .replace('{{text}}', sticker.text);
