@@ -16,13 +16,13 @@
 <body>
     <form id="toDoForm" class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">New Task:</span>
-        <input type="text" id="toDoInput" class="form-control"/>
+        <input type="text" id="task-input" class="form-control"/>
         <button type="submit" id="addBtn" class="btn btn-info">Add</button>
     </form>
     <div id="errorMessage" hidden>This field is required</div>
-    <ul id="toDoList"></ul>
-    <script type="text/template" id="liTemplate">
-        <li class="task-item" data-id="{{id}}">{{newTask}}</li>
+    <ul id="todo-list"></ul>
+    <script type="text/template" id="li-template">
+        <li class="task-item" data-id="{{id}}">{{text}}</li>
     </script>
 </body>
 </html>
