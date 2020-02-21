@@ -2,6 +2,7 @@
 
 const LS_KEY = 'tasksList';
 const DEFAULT_TASK_STATE = 'new';
+const COMPLETE_TASK_STATE = 'done';
 
 const $toDoForm = $('#toDoForm');
 const $taskInput = $('#task-input');
@@ -69,9 +70,12 @@ function toggleTaskState(el) {
 
 function setTaskState(id) {
     const obj = tasks.find(el => el.id == +id);
-    if(obj.state = DEFAULT_TASK_STATE) {
-        obj.state = 'done'
-    } else (DEFAULT_TASK_STATE);
+    switch (obj.state) {
+        case DEFAULT_TASK_STATE: obj.state = COMPLETE_TASK_STATE;
+        break;
+        case COMPLETE_TASK_STATE: obj.state = DEFAULT_TASK_STATE;
+        break;
+    } 
 }
 
 function validNewTask(task) {
