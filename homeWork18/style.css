@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-#errorMessage {
+#error-message {
     color: red;
 }
 
