@@ -14,12 +14,12 @@
   <title>ToDo List</title>
 </head>
 <body>
-    <form id="toDoForm" class="input-group mb-3">
+    <form id="to-do-form" class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">New Task:</span>
         <input type="text" id="task-input" class="form-control"/>
         <button type="submit" id="addBtn" class="btn btn-info">Add</button>
     </form>
-    <div id="errorMessage">This field is required</div>
+    <div id="error-message">This field is required</div>
     <ul id="todo-list"></ul>
     <script type="text/template" id="li-template">
         <li class="task-item {{stateClass}}" data-id="{{id}}">{{text}}

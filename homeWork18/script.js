@@ -4,11 +4,11 @@ const LS_KEY = 'tasksList';
 const DEFAULT_TASK_STATE = 'new';
 const COMPLETE_TASK_STATE = 'done';
 
-const $toDoForm = $('#toDoForm');
+const $toDoForm = $('#to-do-form');
 const $taskInput = $('#task-input');
 const $toDoList = $('#todo-list');
 const $liTemplate = $('#li-template').html();
-const $errorMessage = $('#errorMessage');
+const $errorMessage = $('#error-message');
 const $deleteIcon = $('.close');
 
 $toDoForm.on('submit', onToDoFormSubmit);
