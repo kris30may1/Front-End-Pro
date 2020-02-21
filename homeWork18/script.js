@@ -22,7 +22,6 @@ function init() {
     hideError();      
     getTaskList();
     setTasks(tasks);
-    getTaskState(tasks);
     renderTaskList(tasks);  
 }
 
@@ -70,20 +69,13 @@ function toggleTaskState(el) {
 
 function setTaskState(id) {
     const obj = tasks.find(el => el.id == +id);
-    console.log(obj);
     if(obj.state = DEFAULT_TASK_STATE) {
         obj.state = 'done'
     } else (DEFAULT_TASK_STATE);
-    console.log(obj);
-    return obj;
 }
 
 function validNewTask(task) {
     return task.text != '';
-}
-
-function getTaskState(data) {
-    data.forEach(el => el.state == 'done' ? toggleTaskState(el) : '');
 }
 
 function findElId($el) {
@@ -107,14 +99,15 @@ function renderTaskList(data) {
 function generateTaskHtml(task) {
     return $liTemplate
         .replace('{{id}}', task.id)
-        .replace('{{text}}', task.text);
+        .replace('{{text}}', task.text)
+        .replace('{{stateClass}}', task.state);
 }
 
 function createNewTask() {            
     let task = {};
     task.id = Date.now();
     task.text = '';
-    task.state = 'new';
+    task.state = DEFAULT_TASK_STATE;
     return task;
 }
 
