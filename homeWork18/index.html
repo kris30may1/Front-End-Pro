@@ -19,10 +19,13 @@
         <input type="text" id="task-input" class="form-control"/>
         <button type="submit" id="addBtn" class="btn btn-info">Add</button>
     </form>
-    <div id="errorMessage" hidden>This field is required</div>
+    <div id="errorMessage">This field is required</div>
     <ul id="todo-list"></ul>
     <script type="text/template" id="li-template">
-        <li class="task-item" data-id="{{id}}">{{text}}</li>
+        <div>
+            <li class="task-item" data-id="{{id}}">{{text}}</li>
+            <span class="close">X</span>
+        </div>
     </script>
 </body>
 </html>

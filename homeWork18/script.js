@@ -1,55 +1,90 @@
 'use strict'
 
 const LS_KEY = 'tasksList';
+const DEFAULT_TASK_STATE = 'new';
 
 const $toDoForm = $('#toDoForm');
 const $taskInput = $('#task-input');
 const $toDoList = $('#todo-list');
 const $liTemplate = $('#li-template').html();
 const $errorMessage = $('#errorMessage');
+const $deleteIcon = $('.close');
 
 $toDoForm.on('submit', onToDoFormSubmit);
 $toDoList.on('click', 'li', onTaskClick);
+$toDoList.on('click', '.close', onDeleteIconClick);
 
 let tasks = [];
 
 init();
 
-function init() {        ///// done
+function init() { 
+    hideError();      
     getTaskList();
-    
+    setTasks(tasks);
+    getTaskState(tasks);
+    renderTaskList(tasks);  
 }
 
-function onToDoFormSubmit(e) {         ///// done
+function onToDoFormSubmit(e) {         
     e.preventDefault();
     const task = createNewTask();
     task.text = getTaskValue();
-    tasks.push(task);
-    renderTaskList(tasks);
-    saveTask(tasks);
+   
+    if (validNewTask(task)) {
+        tasks.push(task);
+        renderTaskList(tasks);
+        saveTask(tasks);
+        hideError();
+    } else {
+        showError();
+    }
+    
     clear();
+    focus();
 }
 
 function onTaskClick(e) {
     const $el = $(e.target);
-    console.log($el);
     toggleTaskState($el);
     const id = findElId($el);
     setTaskState(id);
+    saveTask(tasks);
+}
+
+function onDeleteIconClick(e) {
+    const $el = $(e.target.parentNode);
+    deleteTask($el);
+}
+
+function deleteTask(el) {
+    console.log(el);
+    $(el).remove();
 }
 
 function toggleTaskState(el) {
-    el.toggleClass('done');
+    $(el).toggleClass('done');
 }
 
 function setTaskState(id) {
     const obj = tasks.find(el => el.id == +id);
-    obj.state = 'done';
+    if(obj.state = DEFAULT_TASK_STATE) {
+        obj.state = 'done'
+    } else (DEFAULT_TASK_STATE);
+    console.log(obj);
+    return obj;
+}
+
+function validNewTask(task) {
+    return task.text != '';
+}
+
+function getTaskState(data) {
+    data.forEach(el => el.state == 'done' ? toggleTaskState(el) : '');
 }
 
 function findElId(el) {
-    console.log(el);
-    return el.dataset.id;
+    return el.data('id');
 }
 
 function getTaskValue() {
@@ -59,10 +94,7 @@ function getTaskValue() {
 function getTaskList() {
     let data = localStorage.getItem(LS_KEY);
     data = data ? JSON.parse(data) : [];
-
-    setTasks(data);
-    renderTaskList(data);
-    console.log(data);
+    tasks = data;
 }
 
 function renderTaskList(data) {
@@ -70,7 +102,6 @@ function renderTaskList(data) {
 }
 
 function generateTaskHtml(task) {
-    console.log($liTemplate);
     return $liTemplate
         .replace('{{id}}', task.id)
         .replace('{{text}}', task.text);
@@ -96,10 +127,14 @@ function clear(){
     $taskInput.val('');
 }
 
+function focus(){
+    $taskInput.focus();
+}
+
 function showError(){
-    $errorMessage.hide();
+    $errorMessage.show();
 }
 
 function hideError(){
-    $errorMessage.show();
+    $errorMessage.hide();
 }
