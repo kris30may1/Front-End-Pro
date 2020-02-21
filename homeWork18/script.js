@@ -54,12 +54,14 @@ function onTaskClick(e) {
 
 function onDeleteIconClick(e) {
     const $el = $(e.target.parentNode);
-    deleteTask($el);
+    const id = findElId($el);
+    deleteTask(id);
+    renderTaskList(tasks);
+    saveTask(tasks);
 }
 
-function deleteTask(el) {
-    console.log(el);
-    $(el).remove();
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== +id);
 }
 
 function toggleTaskState(el) {
@@ -68,6 +70,7 @@ function toggleTaskState(el) {
 
 function setTaskState(id) {
     const obj = tasks.find(el => el.id == +id);
+    console.log(obj);
     if(obj.state = DEFAULT_TASK_STATE) {
         obj.state = 'done'
     } else (DEFAULT_TASK_STATE);
@@ -83,8 +86,8 @@ function getTaskState(data) {
     data.forEach(el => el.state == 'done' ? toggleTaskState(el) : '');
 }
 
-function findElId(el) {
-    return el.data('id');
+function findElId($el) {
+    return $el.data('id');
 }
 
 function getTaskValue() {
