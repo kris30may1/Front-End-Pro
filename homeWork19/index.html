@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/normalize.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script defer src="script.js"></script>
+    <title>Stiker`s Board</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <div class="title">
+                    <h1>Your Sticker`s Board!</h1>
+                </div>
+            </div>
+            <button class="btn btn-outline-primary" id="add-new-sticker-btn">Add New Sticker</button>
+        </div>
+        <div id="board" >
+            <script type="text/template" id="new-sticker">
+                <div class="stiсker column" data-id="{{id}}"> 
+                    <div>
+                        <span class="close">X</span>
+                    </div>
+                    <textarea placeholder="Enter your text..." class="sticker" name="sticker" cols="30" rows="10">
+                        {{text}}
+                    </textarea>
+                </div>
+            </script>
+        </div>
+    </div>
+</body>
+</html>

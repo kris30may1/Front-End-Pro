@@ -1,0 +1,53 @@
+body {
+    font-family: 'Lemonada', cursive;
+    margin: auto 0;
+}
+
+.board {
+    margin-top: 10px;
+}
+
+.header {
+    height: 100px;
+    background-color: #a8fffc;
+    border-radius: 10px;
+}
+
+textarea {
+    border: 1px solid #34d2eb;
+    border-radius: 10px;
+    background-color: #f2ffff;
+    margin-top: 10px;
+}
+
+.title {
+    margin-top: 25px;
+    margin-left: 10px;
+    float: left;
+}
+
+.btn {
+    margin-top: 35px;
+    margin-right: 10px;
+    float: right;
+}
+
+.container {
+    max-width: 1780px;
+}
+
+.new-task {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+  }
