@@ -3,21 +3,63 @@
 const LS_KEY = 'stickersList';
 const $addNewTaskBtn = $('#add-new-sticker-btn');
 const stickerTemplate = $('#new-sticker').html();
-const $board = $('#board');
+const $StickerNameInput = $('#StickerNameInput');
+const $board = $('#sortable-board');
 
+let dialog;
 let stickers = [];
 
 $addNewTaskBtn.on('click', onAddNewStickerBtnClick);
 $board.on('click', '.close', onDeleteIconClick);
-$board.on('blur', onStickerBlur, true);
+$board.on('focusout', '.sticker', onStickerBlur);
+$board.on('click', '.sticker', onStickerClick);
 
-getStickers();
+init();
 
-function onAddNewStickerBtnClick() {
+function init(){ 
+    initDialog();
+    getStickers();
+}
+
+function onStickerClick() {
+    sortableBoard();
+}
+
+function AddNewSticker() {
     const sticker = createNewSticker();
     stickers.push(sticker);
     renderStickersBoard(stickers);
     saveStickers(stickers);
+}
+
+function onAddNewStickerBtnClick() {
+    dialog.dialog('open');
+}
+
+function initDialog() {
+    dialog = $('#dialog-form').dialog({
+        autoOpen: false,
+        height: 200,
+        width: 350,
+        modal: true,
+        buttons: {
+            Create: function() {
+                AddNewSticker();
+                dialog.dialog('close');
+            },
+            Cancel: function() {
+                dialog.dialog('close');
+            }
+        },
+        close: function() {
+            $StickerNameInput.val('');
+        }
+    });
+}
+
+function sortableBoard() {
+    $board.sortable();
+    $board.disableSelection();
 }
 
 function onStickerBlur(e) {   
@@ -43,8 +85,8 @@ function updateSticker($el) {
     obj.text = $el.val();
 }
 
-function findStickerById(el) {
-    const id = getStickerId(el);
+function findStickerById($el) {
+    const id = getStickerId($el);
     const obj = stickers.find(el => el.id == +id);
     return obj;
 }
@@ -65,7 +107,7 @@ function saveStickers(data){
 function createNewSticker() {            
     let sticker = {};
     sticker.id = Date.now();
-    sticker.text = '';
+    sticker.text = $StickerNameInput.val();
     return sticker;
 }
 

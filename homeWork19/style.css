@@ -32,8 +32,21 @@ textarea {
     float: right;
 }
 
+#StickerNameInput {
+    border: 1px solid #34d2eb;
+    background-color: #f2ffff;
+}
+
+.ui-button {
+    background-color: #34d2eb;
+}
+
 .container {
     max-width: 1780px;
+}
+
+.ui-dialog-titlebar {
+    background-color: #a8fffc;
 }
 
 .new-task {
@@ -44,6 +57,8 @@ textarea {
 
 .close {
     cursor: pointer;
+    position: fixed;
+    margin: 20px;
 }
 
 .column {
@@ -51,3 +66,4 @@ textarea {
     width: 25%;
     padding: 10px;
   }
+  

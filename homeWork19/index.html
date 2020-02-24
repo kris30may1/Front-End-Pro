@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+            rel="stylesheet"
+            href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+        />
     <link rel="stylesheet" href="../common/css/normalize.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script defer
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            defer
+        ></script>
+  <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            defer
+        ></script>
   <script defer src="script.js"></script>
     <title>Stiker`s Board</title>
 </head>
 <body>
+    <div id="dialog-form" title="New Sticker">
+        <input
+            type="text"
+            name="title"
+            id="StickerNameInput"
+            class="u-full-width"
+        />
+    </div>
     <div class="container">
         <div class="header">
             <div>
@@ -23,17 +39,18 @@
             </div>
             <button class="btn btn-outline-primary" id="add-new-sticker-btn">Add New Sticker</button>
         </div>
-        <div id="board" >
+        <div id="sortable-board">
             <script type="text/template" id="new-sticker">
                 <div class="stiсker column" data-id="{{id}}"> 
                     <div>
                         <span class="close">X</span>
                     </div>
-                    <textarea placeholder="Enter your text..." class="sticker" name="sticker" cols="30" rows="10">
+                    <textarea placeholder="Enter your text..." id="stiker-input" class="sticker" name="sticker" cols="30" rows="10">
                         {{text}}
                     </textarea>
                 </div>
             </script>
+        </div> 
         </div>
     </div>
 </body>
