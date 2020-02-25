@@ -1,0 +1,28 @@
+tr {
+    cursor: pointer;
+}
+
+.icon {
+    cursor: pointer;
+    text-align: center;
+}
+
+.icon:hover {
+    background-color: grey;
+}
+
+#add-btn {
+    margin-bottom: 1000px;
+}
+
+.btn-outline-primary {
+    float: right;
+}
+
+.mat-icon {
+    color: #007bff;
+}
+
+.mat-icon:hover {
+    color: #2e96e6;
+}
