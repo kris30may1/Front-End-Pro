@@ -8,7 +8,7 @@ const $nameInput = $('#name-input');
 const $surnameInput = $('#surname-input');
 const $phoneInput = $('#phone-input');
 const $emailInput = $('#email-input');
-const $dateInput = $('#date-input');
+const $dateInput = $('#datepicker');
 const $tableBody = $('#table-body');
 const $submitFormBtn = $('#submit-form-btn');
 
@@ -17,17 +17,57 @@ let contacts = [];
 
 $submitFormBtn.on('click', onAddContactBtnClick);
 $tableBody.on('click', '.delete', onDeleteIconClick);
+$tableBody.on('click', '.edit', onEditIconClick);
 
 init();
 
 function onAddContactBtnClick() {
     dialog.dialog('open');
+    initDatePicker();
 }
 
 function onDeleteIconClick(e) {
-    const el = $(e.target);
-    const row = el.parent.parent;
-    deleteContact(row.data('id'));
+    const $el = $(e.target);
+    const id = $el.parent.parent.data('id');
+    deleteContact(id);
+}
+
+function onEditIconClick(e) {
+    const $el = $(e.target);
+    const id = getElementId($el);
+    const contact = findContactByID(id);
+    dialog.dialog('open');
+    initDatePicker();
+    setDataInInputs(contact);
+}
+
+function findStickerById($el) {
+    const id = getStickerId($el);
+    const obj = contacts.find(el => el.id == +id);
+    return obj;
+}
+
+function getElementId($el) {
+    return $el.parent.parent.data('id');
+}
+
+function setDataInInputs(contact) {
+    $nameInput.val(contact.name);
+    $surnameInput.val(contact.surname);
+    $phoneInput.val(contact.phone);
+    $emailInput.val(contact.email);
+    $dateInput.val(contact.date);
+} 
+
+function updateUser(id) {
+    fetch(`${CONTACT_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contacts)
+    });
+
 }
 
 function init() {
@@ -38,12 +78,16 @@ function init() {
 function initDialog() {
     dialog = $('#dialog-form').dialog({
         autoOpen: false,
-        height: 400,
-        width: 350,
+        height: 500,
+        width: 450,
         modal: true,
         buttons: {
             Create: function() {
                 submitForm(e);
+                dialog.dialog('close');
+            },
+            'Save Changes': function() {
+                updateUser(id);
                 dialog.dialog('close');
             },
             Cancel: function() {
@@ -54,6 +98,12 @@ function initDialog() {
             $contactForm[0].reset();
         }
     });
+}
+
+function initDatePicker() {
+    $dateInput.datepicker({
+        showButtonPanel: true
+      });  
 }
 
 function getContacts() {
@@ -92,7 +142,6 @@ function deleteContact(id) {
 
 function addContact(contact) {
     contacts.push(contact);
-
     renderContacts(contacts);
     resetForm();
 }

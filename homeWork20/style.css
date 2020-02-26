@@ -1,3 +1,7 @@
+body {
+    font-family: 'Lato';
+}
+
 tr {
     cursor: pointer;
 }
@@ -25,4 +29,35 @@ tr {
 
 .mat-icon:hover {
     color: #2e96e6;
+}
+
+.submit-btn {
+    position:absolute; 
+    top:-1000px;
+}
+
+label {
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+input {
+    width: 400px;   
+}
+
+.ui-dialog-titlebar {
+    background-color: #d1e7ff;
+}
+
+.ui-button {
+    border: 1px solid #087dff;
+    background-color: white;
+    color: #087dff;
+}
+
+.ui-button:hover {
+    background-color: #087dff ;
+    color: white;
 }

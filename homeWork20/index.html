@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link
     rel="stylesheet"
     href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
@@ -24,16 +25,23 @@
     <title>My Contacts</title>
 </head>
 <body>
-    <div id="dialog-form" title="New Contact">
+    <div id="dialog-form" title="Create new contact">       
         <form id="contact-form">
-            <input type="text" name="title" class="data-input-name u-full-width" id="name-input"/>
-            <input type="text" name="title" class="data-input-surname u-full-width" id="surname-input"/>
-            <input type="text" name="title" class="data-input-phone u-full-width" id="phone-input"/>
-            <input type="text" name="title" class="data-input-email u-full-width" id="email-input"/>
-            <input type="text" name="title" class="data-input-date u-full-width" id="date-input"/>
-            <button type="submit" id="add-btn"></button>    
+          <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name-input" value="" class="text ui-widget-content ui-corner-all">
+            <label for="last-name">Last Name</label>
+            <input type="text" name="last-name" id="surname-input" value="" class="text ui-widget-content ui-corner-all">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="phone-input" value="" class="text ui-widget-content ui-corner-all">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email-input" value="" class="text ui-widget-content ui-corner-all">
+            <label for="date">Date of birth</label>
+            <input type="text" name="date" id="datepicker" value="" class="text ui-widget-content ui-corner-all">
+            <input type="submit" class="submit-btn" tabindex="-1">
+          </fieldset>
         </form>
-    </div>
+      </div>
     <table class="table table-striped" id="contactTable">
         <thead>
             <tr>
@@ -41,7 +49,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
-                <th scope="col">Date Of Birth</th>
+                <th scope="col">Date of birth</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -54,7 +62,8 @@
                     <td>{{email}}</td>
                     <td>{{date}}</td>
                     <td>
-                        <mat-icon _ngcontent-jes-c18="" class="mat-icon notranslate material-icons mat-icon-no-color delete" role="img" aria-hidden="true">cancel</mat-icon>
+                        <mat-icon _ngcontent-nbp-c32="" class="mat-icon notranslate ng-tns-c32-64 material-icons mat-icon-no-color edit" role="img">edit</mat-icon>
+                        <mat-icon _ngcontent-jes-c18="" class="mat-icon notranslate material-icons mat-icon-no-color delete" role="img">cancel</mat-icon>
                     </td> 
                 </tr>
             </script>
