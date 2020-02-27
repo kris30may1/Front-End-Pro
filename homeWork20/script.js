@@ -67,7 +67,7 @@ function updateUser(id, $el) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(contacts)
+        body: JSON.stringify(contact)
     });
     
     let contact = findContactById(id);
