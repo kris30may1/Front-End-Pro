@@ -62,7 +62,11 @@ function setDataInInputs(contact) {
 } 
 
 function updateUser(id, $el) {
-    fetch(`${CONTACT_URL}/${id}`, {
+    let contact = findContactById(id);
+    console.log(contact);
+    contact = getInputsValues(id);
+    console.log(contact);
+    fetch(`${CONTACT_URL}/${contact.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -70,12 +74,7 @@ function updateUser(id, $el) {
         body: JSON.stringify(contact)
     });
     
-    let contact = findContactById(id);
-    contact = getInputsValues();
-    console.log(contact);
-    console.log(contacts);
     contact = generateContactHtml(contact);
-    console.log(contact);
     $el.parent().parent().replaceWith(contact);
 }
 
@@ -172,8 +171,9 @@ function addContact(contact) {
     resetForm();
 }
 
-function getInputsValues() {
-    const obj = {name: $nameInput.val(),
+function getInputsValues(id) {
+    const obj = {id: id,
+            name: $nameInput.val(),
             surname: $surnameInput.val(),
             phone: $phoneInput.val(),
             email: $emailInput.val(),
