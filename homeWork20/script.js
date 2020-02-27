@@ -22,33 +22,35 @@ $tableBody.on('click', '.edit', onEditIconClick);
 init();
 
 function onAddContactBtnClick() {
-    dialog.dialog('open');
+    initCreateContactDialog();
     initDatePicker();
+    dialog.dialog('open');
 }
 
 function onDeleteIconClick(e) {
     const $el = $(e.target);
-    const id = $el.parent.parent.data('id');
+    const $contact = $el.parent().parent();
+    const id = $contact.data('id');
     deleteContact(id);
+    $contact.remove();
 }
 
 function onEditIconClick(e) {
     const $el = $(e.target);
     const id = getElementId($el);
-    const contact = findContactByID(id);
-    dialog.dialog('open');
+    const contact = findContactById(id);
+    initEditContactDialog(id, $el);
     initDatePicker();
+    dialog.dialog('open');
     setDataInInputs(contact);
 }
 
-function findStickerById($el) {
-    const id = getStickerId($el);
-    const obj = contacts.find(el => el.id == +id);
-    return obj;
+function findContactById(id) {
+    return contacts.find(el => el.id == +id);
 }
 
 function getElementId($el) {
-    return $el.parent.parent.data('id');
+    return $el.parent().parent().data('id');
 }
 
 function setDataInInputs(contact) {
@@ -59,7 +61,7 @@ function setDataInInputs(contact) {
     $dateInput.val(contact.date);
 } 
 
-function updateUser(id) {
+function updateUser(id, $el) {
     fetch(`${CONTACT_URL}/${id}`, {
         method: 'PUT',
         headers: {
@@ -67,15 +69,21 @@ function updateUser(id) {
         },
         body: JSON.stringify(contacts)
     });
-
+    
+    let contact = findContactById(id);
+    contact = getInputsValues();
+    console.log(contact);
+    console.log(contacts);
+    contact = generateContactHtml(contact);
+    console.log(contact);
+    $el.parent().parent().replaceWith(contact);
 }
 
 function init() {
-    initDialog();
     getContacts();
 }
 
-function initDialog() {
+function initCreateContactDialog() {
     dialog = $('#dialog-form').dialog({
         autoOpen: false,
         height: 500,
@@ -83,11 +91,28 @@ function initDialog() {
         modal: true,
         buttons: {
             Create: function() {
-                submitForm(e);
+                submitForm();
                 dialog.dialog('close');
             },
+            Cancel: function() {
+                dialog.dialog('close');
+            }
+        },
+        close: function() {
+            $contactForm[0].reset();
+        }
+    });
+}
+
+function initEditContactDialog(id, $el) {
+    dialog = $('#dialog-form').dialog({
+        autoOpen: false,
+        height: 500,
+        width: 450,
+        modal: true,
+        buttons: {
             'Save Changes': function() {
-                updateUser(id);
+                updateUser(id, $el);
                 dialog.dialog('close');
             },
             Cancel: function() {
@@ -117,8 +142,8 @@ function setContacts(data) {
     return (contacts = data);
 }
 
-function submitForm(e) {
-    e.preventDefault();
+function submitForm() {
+    // e.preventDefault();
     const contact = getInputsValues();
 
     fetch(CONTACT_URL, {
@@ -133,25 +158,28 @@ function submitForm(e) {
 }
 
 function deleteContact(id) {
+    contacts = contacts.filter(contact => contact.id !== id);
+    console.log(contacts);
     fetch(`${CONTACT_URL}/${id}`, {
         method: 'DELETE'
-    });
-    contacts = contacts.filter(contact => contact.id !== id);
-    renderContacts(contacts);
+    }); 
 }
 
 function addContact(contact) {
     contacts.push(contact);
-    renderContacts(contacts);
+    contact = generateContactHtml(contact);
+    $tableBody.append(contact);
     resetForm();
 }
 
 function getInputsValues() {
-    return {name: $nameInput.val(),
+    const obj = {name: $nameInput.val(),
             surname: $surnameInput.val(),
             phone: $phoneInput.val(),
             email: $emailInput.val(),
-            date: $dateInput.val()};
+            date: $dateInput.val()
+        };
+    return obj;
 }
 
 function renderContacts(data) {
@@ -166,4 +194,8 @@ function generateContactHtml(contact) {
         .replace('{{phone}}', contact.phoone)
         .replace('{{email}}', contact.email)
         .replace('{{date}}', contact.date);
+}
+
+function resetForm() {
+    $contactForm[0].reset();
 }
