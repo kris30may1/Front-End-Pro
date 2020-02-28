@@ -142,7 +142,6 @@ function setContacts(data) {
 }
 
 function submitForm() {
-    // e.preventDefault();
     const contact = getInputsValues();
 
     fetch(CONTACT_URL, {
