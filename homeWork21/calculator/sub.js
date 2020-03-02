@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = function sub(firstVal, secondVal) {
+module.exports = (firstVal, secondVal) => {
     const result = firstVal - secondVal;
     return result;
 }
