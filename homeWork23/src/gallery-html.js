@@ -3,10 +3,10 @@
 const $photoTemplate = $('#photo-template').html();
 const $gallery = $('#lightgallery');
 
-function renderTaskList(data) {
+module.exports = function renderGallery(data) {
     $gallery.html(data.map(generatePhoto).join('\n'));
 }
 
-module.exports = function generatePhoto(el) {
+function generatePhoto(el) {
     return $photoTemplate.replace('{{photoUrl}}', el.thumbnailUrl);
 }
