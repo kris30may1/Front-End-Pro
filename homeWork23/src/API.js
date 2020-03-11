@@ -1,10 +1,10 @@
 'use strict'
 
-const PHOTOS_URL = 'https://jsonplaceholder.typicode.com/photos';
+const galleryData = require('./gallery-data')
 
-function getPhotos() {
+module.exports = function getPhotos(PHOTOS_URL) {
     return fetch(PHOTOS_URL) 
         .then(resp => resp.json())
-        .then(setPhotos)
+        .then(galleryData.setPhotos)
         .then(renderGallery);
 }
