@@ -3,9 +3,9 @@
 const galleryData = require('./gallery-data');
 const galleryHTML = require('./gallery-html');
 
-module.exports = function getPhotos(PHOTOS_URL) {
-    return fetch(PHOTOS_URL) 
+module.exports = function getPhotos(URL) {
+    return fetch(URL) 
         .then(resp => resp.json())
-        .then(galleryData.setPhotos)
-        .then(galleryHTML.renderGallery);
+        // .then(galleryData)
+        .then(galleryHTML.renderGallery());
 }

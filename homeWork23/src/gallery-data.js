@@ -1,5 +1,5 @@
 'use strict'
 
-let photos = [];
+// let photos = [];
 
 module.exports = data => (photos = data);
