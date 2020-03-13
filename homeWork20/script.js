@@ -63,9 +63,7 @@ function setDataInInputs(contact) {
 
 function updateUser(id, $el) {
     let contact = findContactById(id);
-    console.log(contact);
     contact = getInputsValues(id);
-    console.log(contact);
     fetch(`${CONTACT_URL}/${contact.id}`, {
         method: 'PUT',
         headers: {

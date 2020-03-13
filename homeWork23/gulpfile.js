@@ -38,8 +38,8 @@ function serve() {
         }
     });
 
-    watch('./*.js', series(scripts, browserSync.reload));
-    watch('./style.css', series(styles, browserSync.reload));
+    watch('./src/*.js', series(scripts, browserSync.reload));
+    watch('./src/style.css', series(styles, browserSync.reload));
 }
 
 const build = series(html, scripts, styles);

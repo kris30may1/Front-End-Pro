@@ -1,11 +1,9 @@
 'use strict'
 
-const galleryData = require('./gallery-data');
-const galleryHTML = require('./gallery-html');
+const renderGallery = require('./gallery');
 
 module.exports = function getPhotos(URL) {
     return fetch(URL) 
         .then(resp => resp.json())
-        // .then(galleryData)
-        .then(galleryHTML.renderGallery());
+        .then(renderGallery());
 }
