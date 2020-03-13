@@ -13,6 +13,15 @@ function html() {
         .pipe(dest('./dist'));
 }
 
+function vendorsJS() {
+    return src([
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/lightgallery/src/js/lightgallery.js'
+    ])
+    .pipe(concat('vendors.js'))
+    .pipe(dest('./dist'))
+}
+
 function scripts() {
     return src('./src/**/*.js')
         .pipe(sourcemaps.init())
@@ -42,7 +51,7 @@ function serve() {
     watch('./src/style.css', series(styles, browserSync.reload));
 }
 
-const build = series(html, scripts, styles);
+const build = series(html, vendorsJS, scripts, styles);
 
 module.exports = {
     default: defaultTask,
