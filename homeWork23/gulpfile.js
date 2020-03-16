@@ -16,7 +16,7 @@ function html() {
 function vendorsJS() {
     return src([
         './node_modules/jquery/dist/jquery.js',
-        './node_modules/lightgallery/src/js/lightgallery.js'
+        // './node_modules/lightgallery/src/js/lightgallery.js'
     ])
     .pipe(concat('vendors.js'))
     .pipe(dest('./dist'))
@@ -32,7 +32,8 @@ function scripts() {
 
 function styles() {
     return src('./src/style.css')
-        .pipe(dest('./dist'));
+        .pipe(dest('./dist'))
+        .pipe(browserSync.stream({match: '**/*.css'}));
 }
 
 function watchFiles() {
@@ -46,9 +47,14 @@ function serve() {
             baseDir: "./dist"
         }
     });
+    }
 
-    watch('./src/*.js', series(scripts, browserSync.reload));
-    watch('./src/style.css', series(styles, browserSync.reload));
+    watch('./src/*.js', series(html, scripts,
+        (next) => {browserSync.reload();
+            next();
+        }
+    ));
+    watch('./src/style.css', styles);
 }
 
 const build = series(html, vendorsJS, scripts, styles);

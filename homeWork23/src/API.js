@@ -1,9 +1,7 @@
 'use strict'
+const API = {};
+const PHOTOS_URL = 'https://jsonplaceholder.typicode.com/photos';
 
-const renderGallery = require('./gallery');
-
-module.exports = function getPhotos(URL) {
-    return fetch(URL) 
-        .then(resp => resp.json())
-        .then(renderGallery());
-}
+API.getPhotos = (PHOTOS_URL) => { 
+    return fetch(PHOTOS_URL) .then(resp => resp.json());
+} 

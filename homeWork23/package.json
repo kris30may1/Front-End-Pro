@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.33",
     "jquery": "^3.4.1",
-    "lightgallery": "^1.6.12"
+    "lightgallery": "^1.6.12",
+    "simplelightbox": "^2.1.3"
   }
 }
