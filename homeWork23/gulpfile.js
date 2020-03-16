@@ -47,15 +47,13 @@ function serve() {
             baseDir: "./dist"
         }
     });
-    }
-
     watch('./src/*.js', series(html, scripts,
         (next) => {browserSync.reload();
             next();
         }
     ));
     watch('./src/style.css', styles);
-}
+    }
 
 const build = series(html, vendorsJS, scripts, styles);
 
