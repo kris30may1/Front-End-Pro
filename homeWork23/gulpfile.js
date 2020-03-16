@@ -16,7 +16,7 @@ function html() {
 function vendorsJS() {
     return src([
         './node_modules/jquery/dist/jquery.js',
-        // './node_modules/lightgallery/src/js/lightgallery.js'
+        './node_modules/simplelightbox/dist/simple-lightbox.jquery.js'
     ])
     .pipe(concat('vendors.js'))
     .pipe(dest('./dist'))
