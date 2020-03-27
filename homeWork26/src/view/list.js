@@ -7,11 +7,7 @@ export default class ListView {
     }
 
     createElement() {
-        this.el = document.createElement('tbody');
-        this.el.id = 'table-body';
-        this.el.appendChild('thead').id = 'name-cell';
-        this.el.appendChild('tbody').id = 'surname-cell';
-        this.el.appendChild('tfoot').id = 'phone-cell';
+        this.el = document.querySelector('tbody');
     }
 
     renderContactList(data) {

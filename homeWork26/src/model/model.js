@@ -2,7 +2,7 @@
 
 let urlWeakMap = new WeakMap();
 
-export default class ToDoModel {
+export default class contactModel {
     get url() {
         return urlWeakMap.get(this);
     }
@@ -36,6 +36,7 @@ export default class ToDoModel {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this)
+            .then(console.log('model is updated'))
         });
     }
 }

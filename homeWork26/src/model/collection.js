@@ -1,5 +1,7 @@
 'use strict'
 
+import contactModel from "../model/model";
+
 export default class contactsCollection {
     constructor(url) {
         this.url = url;
@@ -12,14 +14,16 @@ export default class contactsCollection {
 
     fetch() {
         console.log('fetching');
-        return this.fetch(this.url)
+        return fetch(this.url)
             .then(resp => resp.json())
             .then(this.setData)
-            .then(console.log(list))
+            .then(console.log(this.list))
     }
 
     setData(list) {
-        return (this.list = list.map(el => new ToDoModel(this.url, el)));
+        console.log('Contacts', list);
+        console.log(this.list);
+        return (this.list = list.map(el => new contactModel(this.url, el)));
     }
 
     deleteContact(id) {

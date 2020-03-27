@@ -1,3 +1,5 @@
+'use strict'
+
 export default class FormView {
     constructor(config) {
         this.config = config;
@@ -20,21 +22,27 @@ export default class FormView {
 
     createElement() {
         this.el = document.createElement('form');
+        this.el.classList = 'form';
         this.el.id = 'contact-form';
-        this.el.parentElement(querySelector('#table-footer'));
-        this.el.innerHTML = `<tr>
+        this.el.innerHTML = `
+        <tr>
         <th>
-            <input type="text" class="data-input-name" id="name-input"/>
+            <input type="text" class="form-input" name="First Name" id="name-input"/>
         </th>
         <th>
-            <input type="text" class="data-input-surname" id="surname-input"/>
+            <input type="text" class="form-input" name="Last Name" id="surname-input"/>
         </th>
         <th>
-            <input type="text" class="data-input-email" id="email-input"/>
+            <input type="text" class="form-input" name="Email" id="email-input"/>
         </th>
         <th>
             <button type="submit" id="add-btn">Add</button>
         </th>
-    </tr>`;
+    </tr>
+    `;
+
+    console.log('form is created')
     }
+
+    
 }
