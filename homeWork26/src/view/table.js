@@ -17,23 +17,12 @@ export default class TableView {
         this.el.appendChild(tfoot);
 
         const tr = document.createElement('tr');
-        thead.appendChild(tr);
+        thead.innerHTML = `<tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+    </tr>`;
         
-        const th = document.createElement('th');
-        tr.appendChild(th);
-        th.innerHTML = 'First Name';
-
-        const th1 = document.createElement('th');
-        tr.appendChild(th1);
-        th1.innerHTML= 'Last Name';
-
-        const th2 = document.createElement('th');
-        tr.appendChild(th2);
-        th2.innerHTML = 'Email';
-
-        const th3 = document.createElement('th');
-        tr.appendChild(th3);
-        th3.innerHTML = 'Action';
-
     }
 }

@@ -30,8 +30,7 @@ export default class Controller {
         this.container = document.querySelector('#root');
 
         this.container.append(this.tableView.el);
-        this.tableView.el.append(this.formView.el);
-        console.log('table is added');
+        document.querySelector('tfoot').append(this.formView.el);
 
         this.refreshData();
     }

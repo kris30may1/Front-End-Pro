@@ -3,14 +3,10 @@
 export default class ListView {
     constructor(config) {
         this.config = config;
-        this.createElement();
-    }
-
-    createElement() {
-        this.el = document.querySelector('tbody');
     }
 
     renderContactList(data) {
+        this.el = document.querySelector('tbody');
         this.el.innerHTML = data.map(this.renderItem).join('\n');
     }
 
@@ -20,8 +16,8 @@ export default class ListView {
         <td>${item.surname}</td>
         <td>${item.email}</td>
         <td>
-            <span class="button"></span>
-            <span class="icon">X</span>
+            <span class="button">Edit</span>
+            <span class="button">Delete</span>
         </td> 
     </tr>`;
     }

@@ -21,8 +21,6 @@ export default class contactsCollection {
     }
 
     setData(list) {
-        console.log('Contacts', list);
-        console.log(this.list);
         return (this.list = list.map(el => new contactModel(this.url, el)));
     }
 
