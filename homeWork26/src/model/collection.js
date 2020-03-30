@@ -8,8 +8,6 @@ export default class contactsCollection {
         this.list = [];
 
         this.setData = this.setData.bind(this);
-
-        console.log('collection', url);
     }
 
     fetch() {
@@ -29,6 +27,12 @@ export default class contactsCollection {
         return model
             .delete()
             .then(() => (this.list = this.list.filter(item => item !== model)));
+    }
+
+    updateContact(data) {
+        const model = this.get(data.id);
+        return model
+            .update(data)
     }
 
     get(id) {

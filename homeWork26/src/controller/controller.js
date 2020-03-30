@@ -10,17 +10,20 @@ export default class Controller {
         this.tableView = new TableView({
             onSave: data => {
                 this.collection.addContact(data).then(() => this.renderData());
+            },
+            onUpdate: data => {
+                this.collection.updateContact(data)
+                .then(this.refreshData)
             }
         });
+            
         this.listView = new ListView({
             onDelete: id => {
                 this.collection.deleteContact(id).then(() => this.renderData());
             },
             onEdit: id => {
-                this.collection
-                    .getContact(id)
-                    .updateContact()
-                    .then(() => this.renderData());
+                const model = this.collection.get(id);  
+                this.tableView.fillForm(model);
             }
         })
 

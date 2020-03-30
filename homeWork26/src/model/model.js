@@ -27,14 +27,13 @@ export default class contactModel {
         });
     }
 
-    update() {
+    update(data) {
         return fetch(`${this.url}/${this.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(this)
-            .then(console.log('model is updated'))
+            body: JSON.stringify(data)
         });
     }
 }

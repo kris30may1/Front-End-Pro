@@ -5,24 +5,49 @@ export default class tableView {
         this.config = config;
         this.createElement();
         this.el.addEventListener('submit', this.onSubmit.bind(this));
+        this.idInput = this.el.querySelector('#id');
         this.nameInput = this.el.querySelector('#name');
         this.surnameInput = this.el.querySelector('#surname');
-        this.emailInput = this.el.querySelector('#email');
+        this.emailInput = this.el.querySelector('#surname');
+        this.inputs = this.el.querySelectorAll('input');
+
     }
 
     onSubmit(e) {
-        e.preventDefault();
-        console.log('submit');
-        this.config.onSave({
+        e.preventDefault(); 
+        const id = this.idInput.getAttribute('value'); 
+        console.log(id);    
+        if (id === '') {
+            this.config.onSave({
+                name: this.nameInput.value,
+                surname: this.surnameInput.value,
+                email: this.emailInput.value
+        }) 
+    } else {
+        this.config.onUpdate({
+            id: this.idInput.value,
             name: this.nameInput.value,
             surname: this.surnameInput.value,
             email: this.emailInput.value
+        })
+    }
+
+        this.resetContactForm();
+    }
+
+    resetContactForm() {
+        this.el.reset();
+    }
+
+    fillForm(user) {
+        Array.prototype.forEach.call(this.inputs, input => {
+            input.value = user[input.name]
         });
     }
 
     createElement() {
         this.el = document.createElement('form');
-        this.id = 'contact-form';
+        this.el.id = 'contact-form';
 
         this.el.innerHTML = `<table class="table u-full-width" id="contact-table">
         <thead>
@@ -38,17 +63,18 @@ export default class tableView {
         </tbody>
         <tfoot id="table-footer">
                 <tr>
+                    <input type="hidden" name="id" class="form-input" id="id" value=""/>
                     <th>
-                        <input type="text" class="input-name" id="name"/>
+                        <input type="text" name="name" class="form-input" id="name"/>
                     </th>
                     <th>
-                        <input type="text" class="input-surname" id="surname"/>
+                        <input type="text" name="surname" class="form-input" id="surname"/>
                     </th>
                     <th>
-                        <input type="text" class="input-phone" id="email"/>
+                        <input type="text" name="email" class="form-input" id="email"/>
                     </th>
                     <th>
-                        <button type="submit" id="add-btn">Add</button>
+                        <button type="submit" id="add-btn">Save</button>
                     </th>
                 </tr>
         </tfoot>
