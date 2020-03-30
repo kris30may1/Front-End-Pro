@@ -31,7 +31,7 @@ export default class contactsCollection {
             .then(() => (this.list = this.list.filter(item => item !== model)));
     }
 
-    getContact(id) {
+    get(id) {
         return this.list.find(item => item.id == id);
     }
 

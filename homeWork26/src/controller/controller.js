@@ -2,13 +2,16 @@
 import { CONTACTS_URL } from '../config'
 import contactsCollection from '../model/collection';
 import ListView from '../view/list';
-import FormView from '../view/form';
-import TableView from '../view/table';
+import TableView from '../view/html-template';
 
 export default class Controller {
     constructor() {
         this.collection = new contactsCollection(CONTACTS_URL);
-        this.tableView = new TableView();
+        this.tableView = new TableView({
+            onSave: data => {
+                this.collection.addContact(data).then(() => this.renderData());
+            }
+        });
         this.listView = new ListView({
             onDelete: id => {
                 this.collection.deleteContact(id).then(() => this.renderData());
@@ -21,16 +24,9 @@ export default class Controller {
             }
         })
 
-        this.formView = new FormView({
-            onSave: data => {
-                this.collection.addContact(data).then(() => this.renderData());
-            }
-        });
-
         this.container = document.querySelector('#root');
 
         this.container.append(this.tableView.el);
-        document.querySelector('tfoot').append(this.formView.el);
 
         this.refreshData();
     }

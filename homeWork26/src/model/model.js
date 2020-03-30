@@ -15,21 +15,19 @@ export default class contactModel {
         this.url = collectionUrl;
 
         this.setData(data);
-
-        console.log('model constructor', this.url);
     }
 
     setData(data) {
         Object.assign(this, data);
     }
 
-    deleteContact() {
+    delete() {
         return fetch(`${this.url}/${this.id}`, {
             method: 'DELETE'
         });
     }
 
-    updateContact() {
+    update() {
         return fetch(`${this.url}/${this.id}`, {
             method: 'PUT',
             headers: {
