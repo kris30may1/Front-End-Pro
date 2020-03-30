@@ -11,11 +11,9 @@ export default class contactsCollection {
     }
 
     fetch() {
-        console.log('fetching');
         return fetch(this.url)
             .then(resp => resp.json())
             .then(this.setData)
-            .then(console.log(this.list))
     }
 
     setData(list) {

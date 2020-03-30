@@ -12,8 +12,7 @@ export default class Controller {
                 this.collection.addContact(data).then(() => this.renderData());
             },
             onUpdate: data => {
-                this.collection.updateContact(data)
-                .then(this.refreshData)
+                this.collection.updateContact(data).then(() => this.refreshData());
             }
         });
             

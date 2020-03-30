@@ -8,7 +8,7 @@ export default class tableView {
         this.idInput = this.el.querySelector('#id');
         this.nameInput = this.el.querySelector('#name');
         this.surnameInput = this.el.querySelector('#surname');
-        this.emailInput = this.el.querySelector('#surname');
+        this.emailInput = this.el.querySelector('#email');
         this.inputs = this.el.querySelectorAll('input');
 
     }
@@ -31,7 +31,8 @@ export default class tableView {
             email: this.emailInput.value
         })
     }
-
+        
+        this.idInput.value = '';
         this.resetContactForm();
     }
 
