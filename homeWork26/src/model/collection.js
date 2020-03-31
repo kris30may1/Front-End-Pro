@@ -45,7 +45,7 @@ export default class contactsCollection {
             },
             body: JSON.stringify(data)
         })
-            .then(res => res.json())
+            .then(resp => resp.json())
             .then(data => this.list.push(new contactModel(this.url, data)));
     }
 }

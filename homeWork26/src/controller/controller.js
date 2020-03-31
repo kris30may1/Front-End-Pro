@@ -9,10 +9,12 @@ export default class Controller {
         this.collection = new contactsCollection(CONTACTS_URL);
         this.tableView = new TableView({
             onSave: data => {
-                this.collection.addContact(data).then(() => this.renderData());
+                this.collection.addContact(data)
+                .then(() => this.renderData());
             },
             onUpdate: data => {
-                this.collection.updateContact(data).then(() => this.refreshData());
+                this.collection.updateContact(data)
+                .then(() => this.refreshData());
             }
         });
             
@@ -24,7 +26,7 @@ export default class Controller {
                 const model = this.collection.get(id);  
                 this.tableView.fillForm(model);
             }
-        })
+        });
 
         this.container = document.querySelector('#root');
 
@@ -39,7 +41,6 @@ export default class Controller {
 
     renderData() {
         this.listView.renderContactList(this.collection.list);
-        console.log(this.collection.list);
     }
 
     
