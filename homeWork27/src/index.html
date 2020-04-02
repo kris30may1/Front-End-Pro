@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container u-full-width">
+            <div msg-list-container>
+                <ul id="msg-list">
+                </ul>
+            </div>
+            <div id="form-container">
+                <form id="chat-form">
+                    <input type="text" name="Username" class="form-input" id="username-input"/>
+                    <input type="text" name="Your Message" class="form-input" id="msg-input"/>
+                    <button type="submit" id="send-btn">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/template" id="msg-template">
+        <li class="message u-full-width">
+            <span>{{user}}</span>
+            <span>{{userMsg}}</span>
+        </li>
+    </script>
+</body>
+</html>
